@@ -6,15 +6,15 @@
 # Aim    : -----
 # URL    : 
 #===============================================================================
-source('source/error_bar.R')
-directory <- 'F:/ichthyop_output_analysis/RUN2/csv_files/max_distance/'
+source('R/source/error_bar.R')
+directory <- 'F:/ichthyop_output_analysis/RUN2/csv_files/maxDistance/'
 out_path  <- 'F:/ichthyop_output_analysis/RUN2/figures/maxDistance/'
 
 winds <- 'daily'
 simu <- 'lobos'
 ylim <- c(0,100)
 
-dat <- read.table(paste0(directory, winds,'_', simu, '_distance.csv'), header = T, sep = '')
+dat <- read.table(paste0(directory, winds,'_', simu, '_distance.csv'), header = T, sep = ';')
 
 stat_all <- NULL
 for(i in 1:12){
