@@ -14,11 +14,11 @@ source('R/source/recruitment_area.R')
 source('R/source/plot_layout_3.R')
 source('R/source/plot_layout_4.R')
 
-dirpath  <- 'F:/ichthyop_output_analysis/RUN2/csv_files/recruited/'
+dirpath  <- 'F:/ichthyop_output_analysis/CONCIMAR2018/'
 out_path <- 'F:/ichthyop_output_analysis/CONCIMAR2018/'
 
-winds <- 'daily'
-simu  <- 'sechura_lobos'
+winds <- 'clim'
+simu  <- 'sechura'
 simulacion <- paste0(winds,'_',simu)
 file <- paste0(dirpath, simulacion, '.csv')
 
