@@ -33,7 +33,7 @@ if(simu == 'lobos' | simu == 'sechura'){
   ymax = 0.2  # 9 para retencion  ; # 0.2 para transporte
   ylab = 0    # 0 = larval transport ; 1 = larval retention
 }
-ymax <- 3
+# ymax <- 3
 legend <- 0  # legend == 1 turn on legend, if 0, legned turn off
 legend.cex <- 1 # size of the legend inside the plot
 

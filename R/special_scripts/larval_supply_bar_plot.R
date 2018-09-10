@@ -6,18 +6,18 @@
 # Aim    : 
 # URL    : 
 #===============================================================================
-source('source/recruitment_day.R')
+source('R/source/recruitment_day.R')
 
 dirpath <- 'F:/ichthyop_output_analysis/RUN2/csv_files/recruited/'
 out_path <- 'F:/ichthyop_output_analysis/RUN2/figures/recruited/'
 
-dat <- read.table('F:/TESIS/TESIS_MAESTRIA/ARTICULO_SCALLOP/biomasa_poblacion/Sechura_Lobos.csv', sep = ';', header = T)
+dat <- read.table('F:/SCALLOP_ARTICLE/biomasa_poblacion/Sechura_Lobos.csv', sep = ';', header = T)
 dat <- dat[-c(1:31),] # Elegir years 2008-2015
 # dat <- subset(dat, dat[,2] < 10000)
 
 winds <- 'daily'
-transport_csv <- 'sechura_lobos'
-retention_csv <- 'lobos'
+transport_csv <- 'lobos_sechura'
+retention_csv <- 'sechura'
 #-------------------------------------------------------------------------------#
 transport <- read.table(paste0(dirpath, winds,'_',transport_csv, '.csv'), header = T)
 transport <- recruitment_day(transport)
@@ -69,18 +69,18 @@ percent_transport <- (sum(bar_data[1,]) * 100) / supply_area
 percent_retention <- (sum(bar_data[2,]) * 100) / supply_area
 
 # #-------PLOT-----#
-# png(filename = pngfile, width = 650, height = 650, res = 120)
-# barplot(bar_data, beside = T, col = c('grey80','grey20'),
-#         main = main,
-#         ylab = '',
-#         ylim = ylim,
-#         xlab = '')
-# mtext(text = 'Months', side = 1, line = 2, font = 2)
-# mtext(text = 'Billions of larvae', side = 2, line = 2, font = 2)
-# legend('topright', legend = c(paste('Larval Transport -', round(percent_transport,2), '%'),
-#                               paste('Larval Retention -', round(percent_retention,2), '%')),
-#                               bty = 'n', fill = c('grey80','grey20'))
-# dev.off()
+png(filename = pngfile, width = 650, height = 650, res = 120)
+barplot(bar_data, beside = T, col = c('grey80','grey20'),
+        main = main,
+        ylab = '',
+        ylim = ylim,
+        xlab = '')
+mtext(text = 'Months', side = 1, line = 2, font = 2)
+mtext(text = 'Billions of larvae', side = 2, line = 2, font = 2)
+legend('topright', legend = c(paste('Larval Transport -', round(percent_transport,2), '%'),
+                              paste('Larval Retention -', round(percent_retention,2), '%')),
+                              bty = 'n', fill = c('grey80','grey20'))
+dev.off()
 #===============================================================================
 # END OF PROGRAM
 #===============================================================================
