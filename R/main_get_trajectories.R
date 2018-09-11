@@ -9,11 +9,11 @@
 source('F:/GitHub/ichthyop_analysis/R/source/get_trajectories.R')
 start.time <- Sys.time()
 
-dirpath     <- 'G:/ICHTHYOP/final/output_2nd/daily_sechura_lobos/'
+dirpath     <- 'G:/ICHTHYOP/final/output_2nd/daily_lobos/'
 out_path    <- 'F:/ichthyop_output_analysis/RUN2/csv_files/trajectoy/'
 
 winds <- 'daily'
-simu <- 'sechura'
+simu <- 'lobos_sechura' # Name of output files
 table.files <- read.table(paste0('F:/ichthyop_output_analysis/RUN2/cfg/',winds,'_',simu, '_files.csv'), header = T, sep = ';')
 table.files <- subset(table.files, table.files[,1] %in% c(2009:2011))
 
@@ -28,10 +28,7 @@ for(i in 1:12){ # Loop for all months
   
   files <- subset(table.files, table.files[,2] == i)
   files <- as.vector(files[,3])
-  
-  files <- gsub(pattern = 'daily_sechura_lobos_t5/', replacement = '', x = files)
-  
-  
+
   firstdrifter  <- 1
   lastdrifter   <- 20000
   firsttime <- 1
@@ -50,6 +47,7 @@ for(i in 1:12){ # Loop for all months
 
 end.time <- Sys.time()
 time.taken <- print(end.time - start.time)
+rm(list = ls())
 #===============================================================================
 # END OF PROGRAM
 #===============================================================================

@@ -2,14 +2,14 @@ library(ncdf4)
 
 dirpath <- 'G:/ICHTHYOP/final/output_4th/RUN4/clim_lobos/'
 ncfiles <- list.files(path = dirpath, pattern = '.nc', full.names = T, recursive = T)
-ncfiles <- ncfiles[758:length(ncfiles)]
+# ncfiles <- ncfiles[758:length(ncfiles)]
 atts <- c('app.output.output_path',
           'action.recruitment.zone.zone_file',
           'release.zone.zone_file',
           'dataset.roms_3d.input_path',
           'xml_file')
 
-oldstr <- '/run/media/cimobp/'
+oldstr <- '/run/media/jtam/'
 newstr <- '/run/media/lmoecc/'
 
 for(i in 1:length(ncfiles)){

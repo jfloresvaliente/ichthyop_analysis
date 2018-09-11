@@ -1,5 +1,5 @@
 #=============================================================================#
-# Name   : find_paths2
+# Name   : find_paths2-1 : Especial para rutas de transporte
 # Author : Jorge Flores
 # Date   : 
 # Version:
@@ -24,20 +24,32 @@ lat <- ncvar_get(nc, 'lat_psi')
 # ylimmap <- c(-7.2,-5.8)
 # xlimmap <- c(-81.5,-80.2)
 
-dirpath <- 'F:/ichthyop_output_analysis/RUN2/csv_files/trajectoy/'
-out_path <- 'C:/Users/ASUS/Desktop/ich/daily_sechura_lobos/'
-winds <- c('daily')
-month <- 3
+# Sechura - Lobos
+ylimmap <- c(-7.2,-5)
+xlimmap <- c(-81.5,-80.2)
 
-simu <- paste0(winds,'_sechura_lobos')
-csvfile <- paste0(dirpath,'traj_', simu, month, '.csv')
-df <- read.table(csvfile, header = T, sep = ';')
+dirpath <- 'F:/ichthyop_output_analysis/RUN2/csv_files/trajectoy/'
+out_path <- 'C:/Users/ASUS/Desktop/ich/daily_lobos_sechura/'
+winds <- c('daily')
+simu <- paste0(winds,'_lobos_sechura')
+
+df <- NULL
+drifin <- 0
+for(month in 1:12){
+  csvfile <- paste0(dirpath,'traj_', simu, month, '.csv')
+  dfsub <- read.table(csvfile, header = T, sep = ';')
+  if(dfsub$Lon[1] == 999) next()
+  drifin <- drifin + max(dfsub$Drifter)
+  df <- rbind(df, dfsub)
+}
+df$Drifter <- rep(1:drifin, each = 28)
 print(paste('# Inicial de Particulas:',length(levels(factor(df$Drifter)))))
 
 
 # pLOT CON ITERATOR MAP
 x11()
-for(i in seq(1,26,5)){
+day_interval <- c(1:5, seq(10,25,5), 28)
+for(i in day_interval){
   sub_day <- subset(df, df$Day == i)
   
   image.plot(lon, lat, mask, xlim = xlimmap, ylim = ylimmap)
@@ -53,9 +65,9 @@ for(i in seq(1,26,5)){
   minY <- xy[3,2]
   
   sub1 <- subset(sub_day, sub_day$Lon <= maxX &
-                          sub_day$Lon >= minX &
-                          sub_day$Lat <= maxY &
-                          sub_day$Lat >= minY)
+                   sub_day$Lon >= minX &
+                   sub_day$Lat <= maxY &
+                   sub_day$Lat >= minY)
   sub1 <- levels(factor(sub1$Drifter))
   df <- subset(df, df$Drifter %in% sub1)
   print(paste('# Particulas ...', length(sub1)))
