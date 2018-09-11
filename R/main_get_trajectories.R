@@ -6,28 +6,31 @@
 # Aim    : Compute larval tracking for ICHTHYOP outputs (from any directory)
 # URL    : 
 #===============================================================================
-source('source/get_trajectories.R')
+source('F:/GitHub/ichthyop_analysis/R/source/get_trajectories.R')
 start.time <- Sys.time()
 
-dirpath     <- 'G:/ICHTHYOP/final/output_2nd/daily_lobos_sechura/'
+dirpath     <- 'G:/ICHTHYOP/final/output_2nd/daily_sechura_lobos/'
 out_path    <- 'F:/ichthyop_output_analysis/RUN2/csv_files/trajectoy/'
 
 winds <- 'daily'
 simu <- 'sechura'
-table.files <- read.table(paste0('F:/ichthyop_output_analysis/RUN2/cfg/',winds,'_',simu, '_files.csv'), header = F)
+table.files <- read.table(paste0('F:/ichthyop_output_analysis/RUN2/cfg/',winds,'_',simu, '_files.csv'), header = T, sep = ';')
 table.files <- subset(table.files, table.files[,1] %in% c(2009:2011))
 
 # To read 'xml' files from a directory different to original directory
-old_path <- '/run/media/jtam/JORGE_NEW/ICHTHYOP/ichthyop-3.2/cfg/'  # path written in each ncdf input file
+old_path <- '/run/media/lmoecc/JORGE_NEW/ICHTHYOP/ichthyop-3.2/cfg/'  # path written in each ncdf input file
 new_path <- 'F:/ichthyop_output_analysis/RUN2/cfg/'                     # path where '.xml' files are stored
 
 dates <- paste0('timer_Ascat_', winds,'.csv')
-dates <- read.table(paste0(new.path, dates), sep=';', header = TRUE)
+dates <- read.table(paste0(new_path, dates), sep=';', header = TRUE)
 
 for(i in 1:12){ # Loop for all months
   
   files <- subset(table.files, table.files[,2] == i)
   files <- as.vector(files[,3])
+  
+  files <- gsub(pattern = 'daily_sechura_lobos_t5/', replacement = '', x = files)
+  
   
   firstdrifter  <- 1
   lastdrifter   <- 20000
@@ -37,11 +40,11 @@ for(i in 1:12){ # Loop for all months
   # The number of release zones
   nbreleasezones  <- 1
   # The index of the recruitment zone for which recruitment is computed
-  recruitmentzone <- 2 # 1 = WEST , 2 = EAST, 3 = SECHURA
+  recruitmentzone <- 3 # 1 = WEST , 2 = EAST, 3 = SECHURA
   
   dataset <- get_trajectories(firstdrifter,lastdrifter,recruitmentzone,firsttime,lasttime,
                                   dates,files = files,old_path,new_path)
-  write.table(dataset, paste0(out_path,'traj_',winds,'_',simu,i,'.csv'), row.names = F)
+  write.table(dataset, paste0(out_path,'traj_',winds,'_',simu,i,'.csv'), row.names = F, sep = ';')
   rm(dataset)
 }
 
