@@ -16,7 +16,7 @@ library(ncdf4)
 library(XML)
 
 winds <- 'daily'
-simu  <- 'sechura_lobos'
+simu  <- 'lobos'
 
 # This directory contains directories with nc output files stored
 directory <- 'G:/ICHTHYOP/final/output_2nd/'

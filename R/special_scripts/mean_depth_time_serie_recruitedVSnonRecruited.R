@@ -6,14 +6,14 @@
 # Aim    : Compute recruitment for ICHTHYOP model outputs (from any folder)
 # URL    : 
 #===============================================================================
-source('source/error_bar.R')
+source('R/source/error_bar.R')
 
 # The directory that contains the series of netcdf input files
 dirpath <- 'F:/ichthyop_output_analysis/RUN2/csv_files/tracking_mean_depth/'
 out_path <- 'F:/ichthyop_output_analysis/RUN2/figures/depth_time_serie/'
 
 # winds <- 'daily'
-simu <- 'clim_sechura_lobos'
+simu <- 'daily_sechura'
 # x11()
 png(filename = paste0(out_path, simu,'_meanDepthTimeSerie_non-recruited.png'), width = 1250, height = 750, res = 120)
 par(mfrow = c(4,3), mar = c(3,3,1,1))

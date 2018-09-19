@@ -2,18 +2,18 @@ library(ggmap)
 library(fields)
 library(raster)
 
-# Sechura coords
-ylimmap <- c(-6.25,-5)
-xlimmap <- c(-82,-80.7)
+# # Sechura coords
+# ylimmap <- c(-6.25,-5)
+# xlimmap <- c(-82,-80.7)
 
-# # Lobos coords
-# ylimmap <- c(-6.7,-6.2)
-# xlimmap <- c(-81,-80.5)
+# Lobos coords
+ylimmap <- c(-6.7,-6.2)
+xlimmap <- c(-81,-80.5)
 
 dirpath <- 'F:/ichthyop_output_analysis/RUN2/csv_files/trajectoy/'
 out_path <- 'C:/Users/ASUS/Desktop/ich/'
 winds <- c('daily')
-simu <- paste0(winds,'_','sechura')
+simu <- paste0(winds,'_','lobos')
 
 final <- NULL
 for(month in 1:12){
@@ -33,8 +33,41 @@ x <- final[,1]
 y <- final[,2]
 z <- rep(1, times = dim(final)[1])
 
+# # Especial para Retencion en Sechura
+# z <- 1:dim(final)[1]
+# xyz <- cbind(x,y,z)
+# xyz_ind <- subset(xyz, xyz[,1] < -81.045 & xyz[,2] < -5.75)
+# indx <- xyz_ind[,3]
+# 
+# xyz <- xyz[-c(indx),]
+# 
+# xyz[,3] <- rep(1, time = dim(xyz)[1])
+# 
+# xyz <- subset(xyz, xyz[,2] < -5.25)
+# 
+# x <- xyz[,1]
+# y <- xyz[,2]
+# z <- xyz[,3]
+
+# Especial para Retencion en Lobos
+z <- 1:dim(final)[1]
+xyz <- cbind(x,y,z)
+xyz_ind <- subset(xyz, xyz[,2] > -6.35)
+indx <- xyz_ind[,3]
+
+xyz <- xyz[-c(indx),]
+
+xyz[,3] <- rep(1, time = dim(xyz)[1])
+
+# xyz <- subset(xyz, xyz[,2] < -5.25)
+
+x <- xyz[,1]
+y <- xyz[,2]
+z <- xyz[,3]
+
+####################### --
 xy <- matrix(c(x,y), ncol = 2)
-r <- raster(xmn=xlimmap[1], xmx=xlimmap[2], ymn=ylimmap[1], ymx=ylimmap[2], res = 1/24) # 1/48° = 2.2km
+r <- raster(xmn=xlimmap[1], xmx=xlimmap[2], ymn=ylimmap[1], ymx=ylimmap[2], res = 1/48) # 1/48° = 2.2km
 r[] <- 0
 tab <- table(cellFromXY(r, xy))
 
@@ -76,4 +109,4 @@ map   <- map +
 if(!is.null(pngfile)) ggsave(filename = pngfile, width = 9, height = 9) else map
 write.table(x = df, file = paste0(out_path, simu, '_larvaedensity.csv'), sep = ';', row.names = F)
 
-rm(list = ls())
+# rm(list = ls())
