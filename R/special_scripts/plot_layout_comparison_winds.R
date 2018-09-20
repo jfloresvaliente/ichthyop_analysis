@@ -10,12 +10,12 @@ source('R/source/recruitment_year.R')
 source('R/source/recruitment_day.R')
 source('R/source/recruitment_depth.R')
 source('R/source/recruitment_age.R')
-# source('R/source/plot_layout_3.R')
+source('R/source/plot_layout_3.R')
 
 dirpath <- 'F:/ichthyop_output_analysis/RUN2/csv_files/recruited/'
 out_path <- 'F:/ichthyop_output_analysis/RUN2/figures/recruited/'
 
-simu  <- 'sechura_lobos'
+simu  <- 'sechura'
 
 # Don't change anything after here
 if(simu == 'lobos'){
@@ -35,7 +35,7 @@ if(ylab == 1){
 meses = c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
-# legend <- 0  # legend == 1 turn on legend, if 0, legned turn off
+legend <- 0  # legend == 1 turn on legend, if 0, legned turn off
 # legend.cex <- 1 # size of the legend inside the plot
 
 daily_data <- read.csv(paste0(dirpath, 'daily_', simu, '.csv') , sep='')
@@ -132,7 +132,7 @@ for(i in 1:dim(dataage)[1]){
 
 ## PLOT ##
 col_bars <- c('grey20','grey80')
-# png(paste0(out_path, simu,'_plot_layout_comparison.png') ,width = 1050 , height = 350 , res=120)
+png(paste0(out_path, simu,'_plot_layout_comparison.png') ,width = 1050 , height = 350 , res=120)
 
 mat <- matrix(c(1,2,3), 1, 3, byrow = TRUE)
 nf <- layout(mat, widths = c(8,8,8), height = c(8), TRUE)
