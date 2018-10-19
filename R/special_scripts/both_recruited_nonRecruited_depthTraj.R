@@ -9,13 +9,13 @@
 directory <- 'F:/ichthyop_output_analysis/RUN2/csv_files/tracking_mean_depth/'
 out_path  <- 'F:/ichthyop_output_analysis/RUN2/figures/tracking_mean_depth/'
 
-ylim <- c(-40,0)
+ylim <- c(-60,0)
 winds <- 'daily'
-simu <- 'sechura'
+simu <- 'lobos'
 
 if(winds == 'daily') a <- 'Daily' else a <- 'Clim'
-# if(simu == 'lobos')  b <- 'Lobos' else b <- 'SechuraLobos'
-if(simu == 'sechura')  b <- 'Sechura' else b <- 'Sechura'
+if(simu == 'lobos')  b <- 'Lobos' else b <- 'SechuraLobos'
+# if(simu == 'sechura')  b <- 'Sechura' else b <- 'Sechura'
 
 recruited <- paste0('Traj',a,b,'Recruited')#'TrajDailyLobosRecruited'
 nonrecruited <- paste0('Traj',a,b,'NonRecruited')#'TrajDailyLobosNonRecruited'
@@ -49,6 +49,7 @@ for(i in 1:12){
 }
 
 depthMean1 <- apply(depthMean1, c(1,2), mean, na.rm = T)
+depthMean1 <- depthMean1[1:26,]
 
 ### No reclutados
 depthMean2 <- array(data = NA, dim = c(28,3,12))
@@ -60,16 +61,16 @@ for(j in 1:12){
   depthMean2[,,j] <- depth
 }
 depthMean2 <- apply(depthMean2, c(1,2), mean, na.rm = T)
-
+depthMean2 <- depthMean2[1:26,]
 
 
 #### #### Plot #### #### ####
-png(paste0(out_path, figname, '.png'), width = 850, height = 650, res = 120)
+png(paste0(out_path, figname, '.png'), width = 850, height = 450, res = 120)
 par(mar = c(3,3,1,1))
-plot(1:28, type = 'n',ylim = ylim, ylab = '', xlab = '', axes = F)
+plot(1:26, type = 'n',ylim = ylim, ylab = '', xlab = '', axes = F)
 mtext('Days after Spawning', side = 1, line = 2, font = 2)
 mtext('Depth', side = 2, line = 2, font = 2)
-axis(1, at = 1:28, labels = 0:27)
+axis(1, at = seq(1,26,2), labels = seq(0,25,2))
 axis(2, las = 2)
 axis(4)
 box(lwd = 2)
