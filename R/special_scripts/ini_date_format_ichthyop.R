@@ -1,4 +1,4 @@
-dirpath <- '/home/marissela/Documents/ichthyop-3.2/cfg/'
+dirpath <- 'F:/ichthyop_output_analysis/RUN2/cfg/'
 dat <- read.table(paste0(dirpath,'timer_Ascat_daily.csv'), header = T, sep = ';')
 
 dat <- subset(dat, dat$Y %in% c(2009:2011) & dat$t_x %in% c(1,5,10))

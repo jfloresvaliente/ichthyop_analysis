@@ -1,4 +1,4 @@
-#===============================================================================
+#=============================================================================#
 # Name   : main_compute_recruitment_winds
 # Author : Jorge Flores
 # Date   : 
@@ -6,7 +6,7 @@
 # Aim    : Compute recruitment ICHTHYOP outputs (from any folder)
 #          Special script for simulatios made by different forcing winds
 # URL    : 
-#===============================================================================
+#=============================================================================#
 library(ncdf4)
 source('R/source/compute_recruitment_ichthyop_winds.R')
 
@@ -59,11 +59,11 @@ dataset <- compute_recruitment_ichthyop_winds(
 
 ## Choose only three years fron the simulation
 dataset <- subset(dataset, dataset$Year %in% c(2009:2011))
-write.table(dataset, file = paste0(outPath,outFileCsv, '.csv'), row.names = F)
+write.table(dataset, file = paste0(outPath,outFileCsv, '.csv'), row.names = F, sep = ';')
 # write.table(dataset, file = paste0(outPath, 'clim_lobos_sechura.csv'), row.names = F)
 
 time_end <- Sys.time()
 print(time_end - time_ini)
-#===============================================================================
+#=============================================================================#
 # END OF PROGRAM
-#===============================================================================
+#=============================================================================#

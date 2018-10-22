@@ -1,4 +1,4 @@
-#===============================================================================
+#=============================================================================#
 # Name   : compute_recruitment_ichthyop_winds
 # Author : Lett; modified by Jorge Flores
 # Date   : 
@@ -6,7 +6,7 @@
 # Aim    : Compute recruitment ICHTHYOP outputs (nc files from any folder)
 #          Special script for simulatios made by different forcing winds
 # URL    : 
-#===============================================================================
+#=============================================================================#
 compute_recruitment_ichthyop_winds <- function(
   dirpath
   ,firstdrifter
@@ -227,7 +227,6 @@ compute_recruitment_ichthyop_winds <- function(
   #interaction.plot(dataset$Depth,dataset$ReleaseArea,recruitprop,fixed=TRUE,xlab='Release depth (m)',ylab='Transport success (%)',lty=1,col=seq(1,length(areaplot)))
   #interaction.plot(dataset$Day,dataset$Year,recruitprop,fixed=TRUE,xlab='Release day',ylab='Transport success (%)',lty=1,col=seq(1,length(yearplot)))
 }
-
-#===============================================================================
+#=============================================================================#
 # END OF PROGRAM
-#===============================================================================
+#=============================================================================#
