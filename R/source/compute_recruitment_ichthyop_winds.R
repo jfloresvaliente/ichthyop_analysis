@@ -73,7 +73,7 @@ compute_recruitment_ichthyop_winds <- function(
     
     # Read a file (.csv) with particles release time like t0,t5,t10...
     calendar <- read.table(paste0(new_path, dates), sep=';', header = TRUE)
-    calendar <- subset(calendar, calendar$year == yearday[1] & calendar$month == yearday[2])
+    calendar <- subset(calendar, calendar$year == yearday[1] & calendar$day == yearday[2])
     
     # Scrump time of released particles like t0,t5,t10...
     t_x <- calendar$t_x
