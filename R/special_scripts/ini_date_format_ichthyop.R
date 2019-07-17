@@ -1,7 +1,7 @@
 dirpath <- 'F:/ichthyop_output_analysis/RUN2/cfg/'
 dat <- read.table(paste0(dirpath,'timer_Ascat_daily.csv'), header = T, sep = ';')
 
-dat <- subset(dat, dat$Y %in% c(2009:2011) & dat$t_x %in% c(1,5,10))
+dat <- subset(dat, dat$Y %in% c(2009:2010) & dat$t_x %in% c(1,5,10))
 
 date_sim <- NULL
 for(i in 1:dim(dat)[1]){
