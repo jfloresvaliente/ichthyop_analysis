@@ -1,11 +1,11 @@
-#===============================================================================
+#=============================================================================#
 # Name   : timer.R
 # Author : Jorge Flores
 # Date   : 
 # Version:
 # Aim    : Programa para buscar el T0 (scrum time) de cada output de ROMS
 # URL    : 
-#===============================================================================
+#=============================================================================#
 timer <- function(dirpath){
   source('R/source/climatological_calendar.R')
   library(ncdf4)
@@ -25,11 +25,15 @@ timer <- function(dirpath){
   
   # Gets filenames of all files in the dirpath directory 
   file_date <- NULL
-  for(i in 2008:2012){
+  for(i in 2012:2015){
     for(j in 1:12){
       
       # ncfile <- paste0(dirpath, 'newperush_avg.Y',i,'.M',j,'.newperush.nc')
-      ncfile <- paste0(dirpath, 'roms_avg_Y',i,'M',j,'.AscatMerClim.nc')
+      # ncfile <- paste0(dirpath, 'roms_avg_Y',i,'M',j,'.AscatMerClim.nc')
+      # ncfile <- paste0(dirpath, 'sacw3_avg.Y',i,'M',j,'.nc')
+      # ncfile <- paste0(dirpath, 'roms6b_avg.Y',i,'.M',j,'.rsodi1.nc')
+      ncfile <- paste0(dirpath, 'roms_avg_Y',i,'M',j,'.Jaard10kmClim.nc')
+      
       print(ncfile)
       nc <- nc_open(ncfile)
       
@@ -77,6 +81,9 @@ timer <- function(dirpath){
   return(timer_date)
 }
 
-dirpath <- '/run/media/jtam/JORGE_NEW/Peru10km/'
+dirpath <- 'D:/ROMS_SILUMATIONS/10kmparent/'
 a <- timer(dirpath = dirpath)
 write.table(x = a, file = paste0(dirpath, 'date_init_ichthyop.csv'), sep = ';', row.names = F)
+#=============================================================================#
+# END OF PROGRAM
+#=============================================================================#
