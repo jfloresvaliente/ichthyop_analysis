@@ -14,8 +14,8 @@ source('R/source/recruitment_area.R')
 source('R/source/plot_layout_3.R')
 source('R/source/plot_layout_4.R')
 
-dirpath  <- 'F:/ichthyop_output_analysis/RUN2/csv_files/recruited/'
-out_path <- 'F:/'
+dirpath  <- 'E:/F/ichthyop_output_analysis/RUN2/csv_files/recruited/'
+out_path <- 'E:/'
 
 winds <- 'daily'
 simu  <- 'lobos'
@@ -26,7 +26,7 @@ fig_name  <- paste0(out_path, simulacion, '_L3')
 # fig_name2 <- paste0(out_path, simulacion, '_L4')
 
 
-igs <- read.table('F:/SCALLOP_ARTICLE/csv_files/igs.csv', sep = ',', header = T)
+igs <- read.table('E:/F/SCALLOP_ARTICLE/csv_files/igs.csv', sep = ',', header = T)
 igs <- igs$igs_prom
 x <- 1:12
 
@@ -69,7 +69,7 @@ nf <- layout(mat, widths = c(8,8,8), height = c(8), TRUE)
 ### PLOT AS FUNCTION OF MONTH OF SPAWNING
 par(mar=c(4 , 5.5 , 1.5 , 0.15))
 dayplot   <- barplot(dataday[,1], xlab='', ylab= '' ,ylim = c(0,ymax), axes = FALSE, axisnames = FALSE)
-arrows(dayplot,100*(dataday[,2]+dataday[,3]),dayplot,100*(dataday[,2]-dataday[,3]),angle=90,code=3,length=0.05)
+# arrows(dayplot,100*(dataday[,2]+dataday[,3]),dayplot,100*(dataday[,2]-dataday[,3]),angle=90,code=3,length=0.05)
 axis(1, at=dayplot, labels = FALSE, tick = FALSE)
 mtext(ylab, side=2, line=3.5 , cex=1.2)
 axis(2, lwd = 3, cex.axis = 1.4, las = 2)
@@ -78,18 +78,18 @@ mtext('Spawning Month', side=1, line=2.5 , cex=0.9)
 
 if(legend == 1) legend('topleft', 'A)', bty = 'n', cex = legend.cex)
 
-par(new=T)
-plot(dayplot, igs, axes=F, ylim = c(12,20), xlab="", ylab="", 
-     type="l",lty=2, main="",lwd=1.5 , col="red")
-axis(side=4, ylim=c(10,20),lwd=1.5,line=0, font = 2, col='red',col.axis = 'red', las = 2)
-# mtext(text = 'Gonadosomatic Index', side = 4, col = 'red', font = 2, line = 3., cex = 1.2)
-legend('top', legend = 'GI', bty = 'n', lty = 2, lwd = c(1.5), col = 'red', text.col = 'red')
+# par(new=T)
+# plot(dayplot, igs, axes=F, ylim = c(12,20), xlab="", ylab="", 
+#      type="l",lty=2, main="",lwd=1.5 , col="red")
+# axis(side=4, ylim=c(10,20),lwd=1.5,line=0, font = 2, col='red',col.axis = 'red', las = 2)
+# # mtext(text = 'Gonadosomatic Index', side = 4, col = 'red', font = 2, line = 3., cex = 1.2)
+# legend('top', legend = 'GI', bty = 'n', lty = 2, lwd = c(1.5), col = 'red', text.col = 'red')
 
 
 ### PLOT AS FUNCTION OF SPAWNING DEPTH
 par(mar=c(4 , 1.5 , 1.5 , 0.15))
 depthplot <- barplot(datadepth[,1], xlab='', ylab='', ylim = c(0,ymax), axes = FALSE, cex.names=.8)
-arrows(depthplot,100*(datadepth[,2]+datadepth[,3]),depthplot,100*(datadepth[,2]-datadepth[,3]),angle=90,code=3,length=0.05)
+# arrows(depthplot,100*(datadepth[,2]+datadepth[,3]),depthplot,100*(datadepth[,2]-datadepth[,3]),angle=90,code=3,length=0.05)
 # axis(2, lwd = 3, cex.axis = 1.4, las = 2, labels = FALSE)
 mtext('Spawning depth (m)', side=1, line=2.5, cex=0.9)
 # mtext(ylab, side=2, line=2.5 , cex=1.2)
@@ -99,7 +99,7 @@ if(legend == 1) legend('topleft', 'B)', bty = 'n', cex = legend.cex)
 ### PLOT AS FUNCTION OF AGE MINIMUN TO SETTLEMENT
 par(mar=c(4 , 1.5 , 1.5 , 0.15))
 ageplot   <- barplot(dataage[,1], xlab='',ylab= '', ylim = c(0,ymax), axes = FALSE, cex.names=.8)
-arrows(ageplot,100*(dataage[,2]+dataage[,3]),ageplot,100*(dataage[,2]-dataage[,3]),angle=90,code=3,length=0.05)
+# arrows(ageplot,100*(dataage[,2]+dataage[,3]),ageplot,100*(dataage[,2]-dataage[,3]),angle=90,code=3,length=0.05)
 # axis(2, lwd = 3, cex.axis = 1.4, las = 2, labels = FALSE)
 mtext('Minimum age to settlement (d)', side=1, line=2.5, cex=0.9)
 # mtext(ylab, side=2, line=2.5 , cex=1.2)
